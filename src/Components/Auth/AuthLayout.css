@@ -1,0 +1,150 @@
+.auth-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--bg-soft);
+  padding: 2rem;
+}
+
+.global-auth-title {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.auth-card {
+  background: var(--white);
+  padding: 3rem;
+  border-radius: 40px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.auth-card-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.auth-intro-text {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-intro-title {
+  font-size: 1.2rem;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.auth-intro-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.form-input {
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-soft);
+  outline: none;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  background-color: var(--white);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.forgot-link {
+  color: var(--primary);
+  font-weight: 600;
+  background: none;
+  cursor: pointer;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-outline {
+  background: var(--white);
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.signup-prompt {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.signup-link {
+  color: var(--primary);
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .auth-card { padding: 2rem; border-radius: 30px; }
+  .global-auth-title { font-size: 2rem; }
+}

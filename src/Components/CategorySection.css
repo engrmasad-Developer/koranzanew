@@ -1,0 +1,172 @@
+.category-section {
+  padding: var(--space-xl) 0;
+  background-color: var(--primary-soft);
+}
+
+/* Practices Area */
+.practices-area {
+  margin-bottom: 4rem;
+}
+
+.practices-grid {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 1rem;
+}
+
+.practice-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.practice-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  padding: 3px;
+  border: 2px solid var(--primary);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  background: white;
+}
+
+.practice-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.practice-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Masonry Grid */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+  height: 500px;
+}
+
+.masonry-large {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.masonry-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.masonry-text-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.4));
+  color: white;
+}
+
+.masonry-text-overlay h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.masonry-text-overlay p {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.explore-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  color: white;
+}
+
+.masonry-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.masonry-small {
+  flex: 1;
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.masonry-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.masonry-small-overlay {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.masonry-small-overlay h4 {
+  font-size: 1.4rem;
+}
+
+.masonry-bottom-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color: #E7D7CC; /* Solid beige background for bottom card overlay */
+}
+
+.masonry-bottom-overlay h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+  color: #4A3B31;
+}
+
+.masonry-bottom-overlay p {
+  font-size: 0.75rem;
+  color: #6D5B4F;
+  max-width: 180px;
+  line-height: 1.4;
+}
+
+.arrow-btn {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 900px) {
+  .masonry-grid { grid-template-columns: 1fr; height: auto; }
+  .masonry-large { height: 400px; }
+  .masonry-small { height: 300px; }
+}

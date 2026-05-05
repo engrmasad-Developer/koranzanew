@@ -1,0 +1,229 @@
+.product-details-page {
+  padding: var(--space-xl) 0;
+}
+
+.product-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-bottom: 5rem;
+}
+
+.main-image-box {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 40px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.main-image {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.thumbnail-grid {
+  display: flex;
+  gap: 1rem;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background-color: var(--bg-soft);
+}
+
+.thumbnail.active {
+  border-color: var(--primary);
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-tag {
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.product-name {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.product-price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-main);
+}
+
+.product-summary {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.action-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.quantity-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-light);
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  gap: 1.5rem;
+}
+
+.quantity-box button {
+  background: none;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+.quantity-box span {
+  font-weight: 700;
+  min-width: 20px;
+  text-align: center;
+}
+
+.add-to-cart-btn {
+  flex: 1;
+  border-radius: 50px;
+}
+
+.product-meta {
+  display: flex;
+  gap: 2rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Results Section */
+.results-section {
+  padding: 5rem 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.result-item {
+  text-align: center;
+  padding: 2rem;
+}
+
+.result-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--primary);
+}
+
+.result-item h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.result-item p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Practice Section */
+.practice-section {
+  padding: 5rem 0;
+  background-color: var(--bg-soft);
+}
+
+.practice-grid {
+  margin-top: 3rem;
+}
+
+.practice-step {
+  text-align: center;
+  position: relative;
+}
+
+.step-number {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.step-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1.5rem;
+  border: 5px solid white;
+  box-shadow: var(--shadow-sm);
+}
+
+.step-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Related Section */
+.related-section {
+  padding: 5rem 0;
+}
+
+@media (max-width: 900px) {
+  .product-main-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+  .product-name { font-size: 2.5rem; }
+}

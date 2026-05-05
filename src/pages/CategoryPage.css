@@ -1,0 +1,245 @@
+.category-page {
+  padding-top: 2rem;
+  background-color: var(--bg-soft);
+  min-height: 100vh;
+}
+
+.category-header {
+  margin-bottom: 3.5rem;
+}
+
+.category-main-title {
+  font-size: 3.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.category-subtitle {
+  font-size: 1rem;
+  color: #777;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* CONTROLS AREA */
+.category-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: white;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  margin-bottom: 3rem;
+}
+
+.control-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #BBB;
+  margin-right: 1rem;
+  letter-spacing: 1px;
+}
+
+.filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.pill-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  border: 1px solid #EEE;
+  background: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.pill-btn.active {
+  background: #FFE5EE;
+  color: var(--primary);
+  border-color: #FFD1E1;
+}
+
+.minimal-select {
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #444;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* LAYOUT */
+.category-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3.5rem;
+  padding-bottom: 5rem;
+}
+
+/* SIDEBAR */
+.sidebar-group {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.sidebar-group:last-child {
+  border-bottom: none;
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.85rem;
+  color: #666;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+}
+
+.custom-checkbox.active .checkmark {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.custom-checkbox.active .checkmark:after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox.active {
+  color: #1A1A1A;
+  font-weight: 600;
+}
+
+/* PRICE SLIDER */
+.price-slider-wrapper {
+  margin-top: 1rem;
+}
+
+.styled-range {
+  width: 100%;
+  accent-color: var(--primary);
+  height: 4px;
+  background: #EEE;
+  border-radius: 5px;
+  appearance: none;
+  margin-bottom: 1rem;
+}
+
+.price-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #999;
+}
+
+.current-range {
+  background: var(--primary);
+  color: white;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.6rem;
+}
+
+/* PRODUCTS AREA */
+.shop-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.page-num {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #EEE;
+  background: white;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.page-num.active {
+  background: #FFE5EE;
+  color: var(--primary);
+  border-color: var(--primary);
+  font-weight: 700;
+}
+
+.page-arrow {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  background: #F9F9F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .category-layout { grid-template-columns: 1fr; }
+  .shop-products-grid { grid-template-columns: repeat(2, 1fr); }
+  .category-sidebar { display: none; } /* Sidebar hidden on tablet for now */
+}
+
+@media (max-width: 600px) {
+  .shop-products-grid { grid-template-columns: 1fr; }
+  .category-controls { flex-direction: column; gap: 1rem; border-radius: 20px; }
+  .category-main-title { font-size: 2.2rem; }
+}
