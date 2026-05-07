@@ -79,6 +79,29 @@ const ProductCard = ({ product, variant = 'standard' }) => {
     );
   }
 
+  // Complement variant for Product Details page
+  if (variant === 'complement') {
+    return (
+      <div className="product-card complement-variant">
+        <div className="product-image-wrapper">
+          <Link to={`/product/${product.id}`}>
+            <img src={product.img || product.image} alt={product.name} className="product-image" />
+          </Link>
+        </div>
+
+        <div className="product-info">
+          <Link to={`/product/${product.id}`}>
+            <h3 className="product-name serif">{product.name}</h3>
+          </Link>
+          <div className="price-quick-add">
+            <span className="product-price">Pkr {Number(String(product.price).replace(/[^0-9.]/g, '') || 0).toFixed(2)}</span>
+            <button className="btn-quick-add" onClick={() => addToCart(product)}>Quick Add</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Standard variant for Home page
   return (
     <div className="product-card">
@@ -95,7 +118,7 @@ const ProductCard = ({ product, variant = 'standard' }) => {
 
       <div className="product-info">
         <Link to={`/product/${product.id}`}>
-          <h3 className="product-name serif italic">{product.name}</h3>
+          <h3 className="product-name serif">{product.name}</h3>
         </Link>
         <p className="product-description">{product.benefits || 'Radiance & Glow'}</p>
         

@@ -1,5 +1,6 @@
 import React from "react";
 import AuthLayout from "./AuthLayout";
+import { Leaf } from "lucide-react";
 
 const SignupPage = ({ onSwitch }) => {
   const handleSubmit = (e) => {
@@ -9,56 +10,64 @@ const SignupPage = ({ onSwitch }) => {
 
   return (
     <AuthLayout>
+      <div className="auth-header">
+        <div className="auth-logo-icon">
+          <Leaf size={32} />
+        </div>
+        <h2 className="auth-title">Join Koreanza</h2>
+        <p className="auth-subtitle-italic">Begin your journey to luminous skin.</p>
+      </div>
 
-      <form className="signup-form" onSubmit={handleSubmit}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="form-label">Full name</label>
-          <input type="text" className="form-input" />
+          <label className="form-label">Full Name</label>
+          <input 
+            type="text" 
+            className="form-input" 
+            placeholder="Evelyn Rose" 
+          />
         </div>
 
         <div className="form-group">
-          <label className="form-label">Email</label>
-          <input type="email" className="form-input" />
+          <label className="form-label">Email Address</label>
+          <input 
+            type="email" 
+            className="form-input" 
+            placeholder="hello@ritual.com" 
+          />
         </div>
 
-        <div className="form-group">
-          <label className="form-label">Password</label>
-          <input type="password" className="form-input" />
-        </div>
-
-        <button type="submit" className="auth-btn btn-outline" style={{ marginTop: '10px' }}>
-          Sign up
-        </button>
-
-        <p style={{ textAlign: 'center', fontSize: '0.8rem', color: '#555', margin: '5px 0' }}>or create with</p>
-
-        <div className="social-login">
-          <button type="button" className="social-btn">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-              alt="Google"
-              width="20"
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label">Password</label>
+            <input 
+              type="password" 
+              className="form-input" 
+              placeholder="••••••••" 
             />
-            Continue with google
-          </button>
-
-          <button type="button" className="social-btn">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-              alt="Apple"
-              width="20"
+          </div>
+          <div className="form-group">
+            <label className="form-label">Confirm</label>
+            <input 
+              type="password" 
+              className="form-input" 
+              placeholder="••••••••" 
             />
-            Continue with apple
-          </button>
+          </div>
         </div>
 
-        <p className="signup-prompt">
-          Already have an account?
-          <span className="signup-link" onClick={onSwitch}>
-            Login
-          </span>
-        </p>
+        <button type="submit" className="submit-btn">Create Account</button>
       </form>
+
+      <div className="auth-footer">
+        Already have an account? <span className="auth-footer-link" onClick={onSwitch}>Sign In</span>
+      </div>
+
+      <div className="bottom-decoration">
+        <div className="decor-line"></div>
+        <span className="decor-icon">✧</span>
+        <div className="decor-line"></div>
+      </div>
     </AuthLayout>
   );
 };

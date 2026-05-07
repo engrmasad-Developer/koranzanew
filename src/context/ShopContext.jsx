@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { productAPI } from '../services/api.js';
+import { products as localProducts, categories as localCategories } from '../data/products';
 
 const ShopContext = createContext();
 
@@ -8,8 +9,8 @@ const ShopContext = createContext();
 export const useShop = () => useContext(ShopContext);
 
 export const ShopProvider = ({ children }) => {
-    // Products state from API
-    const [products, setProducts] = useState([]);
+    // Products state from API, fallback to local data
+    const [products, setProducts] = useState(localProducts);
     const [productsLoading, setProductsLoading] = useState(true);
     const [productsError, setProductsError] = useState(null);
 
@@ -26,7 +27,7 @@ export const ShopProvider = ({ children }) => {
     });
 
     // Categories state
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState(localCategories);
 
     // Fetch products from API
     const fetchProducts = async (filters = {}) => {
@@ -34,13 +35,13 @@ export const ShopProvider = ({ children }) => {
         setProductsError(null);
         try {
             const response = await productAPI.getAll(filters);
-            if (response.success) {
+            if (response.success && response.data && response.data.length > 0) {
                 setProducts(response.data);
             }
         } catch (error) {
             console.error('Error fetching products:', error);
-            setProductsError('Failed to load products');
-            toast.error('Failed to load products');
+            // On error, we keep the initial localProducts
+            setProductsError('Failed to load products from server');
         } finally {
             setProductsLoading(false);
         }

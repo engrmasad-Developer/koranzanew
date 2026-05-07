@@ -16,6 +16,7 @@ import Auth from "./pages/Auth";
 import CategoryPage from "./pages/CategoryPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import Checkout from "./pages/Checkout";
+import Notifications from "./pages/Notifications";
 import WhatsAppButton from "./Components/WhatsAppButton";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -107,6 +108,7 @@ export default function App() {
           <Route path="/category/:categoryName" element={<><CategoryPage /><Footer /></>} />
           <Route path="/product/:productId" element={<><ProductDetailsPage /><Footer /></>} />
           <Route path="/checkout" element={<><Checkout /><Footer /></>} />
+          <Route path="/notifications" element={<><Notifications /><Footer /></>} />
         </Routes>
       </div>
     </>

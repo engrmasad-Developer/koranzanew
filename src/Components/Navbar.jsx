@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { Search, User, Heart, ShoppingCart } from "lucide-react";
+import { Search, User, Heart, ShoppingCart, Bell } from "lucide-react";
 import "./Navbar.css";
 
 import { useShop } from "../context/ShopContext";
@@ -12,6 +12,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const { cartItems, wishlistItems } = useShop();
   const menuRef = useRef(null);
 
@@ -70,6 +71,13 @@ const Navbar = () => {
     };
   }, [mobileMenuOpen]);
 
+  // Helper to check if a link is active
+  const isActive = (path) => {
+    if (path === "/" && location.pathname === "/") return true;
+    if (path !== "/" && location.pathname.startsWith(path)) return true;
+    return false;
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -78,10 +86,18 @@ const Navbar = () => {
         </Link>
 
         <ul className={`nav-links ${mobileMenuOpen ? "active" : ""}`}>
-          <li className="active"><Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link></li>
-          <li><Link to="/category/all" onClick={() => setMobileMenuOpen(false)}>Shop</Link></li>
-          <li><Link to="/contact" onClick={() => setMobileMenuOpen(false)}>contact us</Link></li>
-          <li><Link to="/about" onClick={() => setMobileMenuOpen(false)}>About us</Link></li>
+          <li className={isActive("/") ? "active" : ""}>
+            <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+          </li>
+          <li className={isActive("/category") ? "active" : ""}>
+            <Link to="/category/all" onClick={() => setMobileMenuOpen(false)}>Shop</Link>
+          </li>
+          <li className={isActive("/contact") ? "active" : ""}>
+            <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>contact us</Link>
+          </li>
+          <li className={isActive("/about") ? "active" : ""}>
+            <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About us</Link>
+          </li>
         </ul>
 
         <div className="nav-icons">
@@ -91,6 +107,10 @@ const Navbar = () => {
           </Link>
           <Link to="/heart" className="icon-link">
             <Heart size={20} strokeWidth={1.5} />
+          </Link>
+          <Link to="/notifications" className="icon-link">
+            <Bell size={20} strokeWidth={1.5} />
+            <span className="icon-badge-dot"></span>
           </Link>
           <Link to="/auth" className="icon-link">
             <User size={20} strokeWidth={1.5} />
