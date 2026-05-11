@@ -39,7 +39,7 @@ const HeroSlider = () => {
   return (
     <section className="hero-static">
       <div className="hero-background">
-        <img src={slider1} alt="Hero" className="hero-bg-img" />
+        <img src={slider1} alt="Hero" className="hero-bg-img" fetchpriority="high" />
       </div>
 
       <div className="hero-content  cont2">

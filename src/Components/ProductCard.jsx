@@ -13,7 +13,7 @@ const ProductCard = ({ product, variant = 'standard' }) => {
       <div className="product-card wishlist-variant">
         <div className="product-image-wrapper">
           <Link to={`/product/${product.id}`}>
-            <img src={product.img || product.image} alt={product.name} className="product-image" />
+            <img src={product.img || product.image} alt={product.name} className="product-image" loading="lazy" />
           </Link>
           <button className="heart-icon-btn active" onClick={() => addToWishlist(product)}>
             <Heart size={16} fill="#FF4D8D" color="#FF4D8D" />
@@ -45,7 +45,7 @@ const ProductCard = ({ product, variant = 'standard' }) => {
       <div className="product-card shop-variant">
         <div className="product-image-wrapper">
           <Link to={`/product/${product.id}`}>
-            <img src={product.img || product.image} alt={product.name} className="product-image" />
+            <img src={product.img || product.image} alt={product.name} className="product-image" loading="lazy" />
           </Link>
           <div className="card-tags">
             {product.isBestSeller && <span className="tag best-seller">BEST SELLER</span>}
@@ -85,7 +85,7 @@ const ProductCard = ({ product, variant = 'standard' }) => {
       <div className="product-card complement-variant">
         <div className="product-image-wrapper">
           <Link to={`/product/${product.id}`}>
-            <img src={product.img || product.image} alt={product.name} className="product-image" />
+            <img src={product.img || product.image} alt={product.name} className="product-image" loading="lazy" />
           </Link>
         </div>
 
@@ -107,7 +107,7 @@ const ProductCard = ({ product, variant = 'standard' }) => {
     <div className="product-card">
       <div className="product-image-wrapper">
         <Link to={`/product/${product.id}`}>
-          <img src={product.img || product.image} alt={product.name} className="product-image" />
+          <img src={product.img || product.image} alt={product.name} className="product-image" loading="lazy" />
         </Link>
         <div className="card-tags">
           {product.isBestSeller && <span className="tag best-seller">BEST SELLER</span>}

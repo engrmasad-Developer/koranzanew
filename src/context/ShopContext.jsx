@@ -35,12 +35,28 @@ export const ShopProvider = ({ children }) => {
         setProductsError(null);
         try {
             const response = await productAPI.getAll(filters);
-            if (response.success && response.data && response.data.length > 0) {
-                setProducts(response.data);
+            if (response.success && response.data) {
+                // Map backend fields to frontend expected fields
+                const apiProducts = response.data.map(p => ({
+                    ...p,
+                    img: p.image || p.img,
+                    skinType: p.skin_type || p.skinType
+                }));
+
+                // Merge with local products to ensure design-matched content is still there
+                // but API products take precedence if IDs clash
+                setProducts(prev => {
+                    const merged = [...apiProducts];
+                    localProducts.forEach(local => {
+                        if (!merged.find(p => String(p.id) === String(local.id))) {
+                            merged.push(local);
+                        }
+                    });
+                    return merged;
+                });
             }
         } catch (error) {
             console.error('Error fetching products:', error);
-            // On error, we keep the initial localProducts
             setProductsError('Failed to load products from server');
         } finally {
             setProductsLoading(false);
@@ -51,8 +67,25 @@ export const ShopProvider = ({ children }) => {
     const fetchCategories = async () => {
         try {
             const response = await productAPI.getCategories();
-            if (response.success) {
-                setCategories(response.data);
+            if (response.success && response.data) {
+                // Map backend fields to frontend expected fields
+                const apiCategories = response.data.map(cat => ({
+                    ...cat,
+                    name: cat.name || cat.category,
+                    img: cat.image || cat.img
+                }));
+
+                // Merge with local categories
+                setCategories(prev => {
+                    const merged = [...apiCategories];
+                    localCategories.forEach(local => {
+                        const localName = local.name || local.category;
+                        if (!merged.find(c => (c.name || c.category) === localName)) {
+                            merged.push(local);
+                        }
+                    });
+                    return merged;
+                });
             }
         } catch (error) {
             console.error('Error fetching categories:', error);

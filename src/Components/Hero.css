@@ -88,26 +88,52 @@
 
 @media (max-width: 1024px) {
   .hero-heading {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
   }
 
   .hero-content {
-    padding-top: 8rem;
+    padding-top: 7rem;
+    margin: 0 40px;
+  }
+
+  .cont2 {
+    margin: 60px 40px;
   }
 }
 
 @media (max-width: 768px) {
   .hero-static {
     height: auto;
-    padding: 6rem 0 4rem;
-  }
-
-  .hero-heading {
-    font-size: 2.8rem;
+    min-height: 80vh;
+    padding-bottom: 3rem;
   }
 
   .hero-content {
-    padding-left: 2rem;
-    padding-top: 4rem;
+    margin: 0 20px;
+    padding-top: 5.5rem;
+    max-width: 100%;
+  }
+
+  .hero-heading {
+    font-size: 2.4rem;
+  }
+
+  .hero-text {
+    font-size: 0.85rem;
+    max-width: 100%;
+  }
+
+  .cont2 {
+    margin: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-heading {
+    font-size: 2rem;
+  }
+
+  .hero-content {
+    padding-top: 5rem;
   }
 }

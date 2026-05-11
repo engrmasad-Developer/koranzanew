@@ -49,12 +49,11 @@ import skinTeaTree from '../assets/Images/skincaree/tea_tree-removebg-preview.pn
 import skinVitaminC from '../assets/Images/skincaree/vitamin_c-removebg-preview.png';
 
 export const categories = [
-    { id: 1, name: 'Face Care', img: faceCover },
-    { id: 2, name: 'Whiting Cream', img: faceCover }, // Using faceCover as placeholder or relevant img
-    { id: 3, name: 'Beauty Serum', img: skincareCover },
-    { id: 4, name: 'Glow Serum', img: skincareCover },
-    { id: 5, name: 'Acne Care', img: faceCover },
-    { id: 6, name: 'Facial Cleanser', img: skincareCover },
+    { id: 1, name: 'Eyes Products', img: eyeCover },
+    { id: 2, name: 'Lip Products', img: lipCover },
+    { id: 3, name: 'Face Products', img: faceCover },
+    { id: 4, name: 'Skincare', img: skincareCover },
+    { id: 5, name: 'Herbal Wellness', img: faceCover },
 ];
 
 export const products = [
@@ -62,45 +61,45 @@ export const products = [
     {
         id: 1,
         name: 'Radiance Dew Serum',
-        category: 'Glow Serum',
+        category: 'Skincare',
         price: '999',
         skinType: 'Normal, Dry, Sensitive',
         benefits: 'Hydration, Brightening',
         isBestSeller: true,
-        img: 'https://images.pexels.com/photos/8128062/pexels-photo-8128062.jpeg'
+        img: 'https://images.pexels.com/photos/8128062/pexels-photo-8128062.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
         id: 2,
         name: 'Silk Recovery Cream',
-        category: 'Face Care',
+        category: 'Skincare',
         price: '999',
         skinType: 'Dry, Sensitive',
         benefits: 'Anti-Aging, Hydration',
         isNew: true,
-        img: 'https://images.pexels.com/photos/8459356/pexels-photo-8459356.jpeg'
+        img: 'https://images.pexels.com/photos/8459356/pexels-photo-8459356.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
         id: 3,
         name: 'Cloud Cleanser',
-        category: 'Facial Cleanser',
+        category: 'Skincare',
         price: '999',
         skinType: 'Normal, Oily, Combination',
         benefits: 'Hydration, Acne',
-        img: 'https://images.pexels.com/photos/8140916/pexels-photo-8140916.jpeg'
+        img: 'https://images.pexels.com/photos/8140916/pexels-photo-8140916.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
         id: 4,
         name: 'Midnight Elixir',
-        category: 'Beauty Serum',
+        category: 'Skincare',
         price: '999',
         benefits: 'Bakuchiol & Squalane',
         isEditorsPick: true,
-        img: 'https://images.pexels.com/photos/8128065/pexels-photo-8128065.jpeg'
+        img: 'https://images.pexels.com/photos/8128065/pexels-photo-8128065.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
         id: 5,
         name: 'Twoedit Eye Shimmer - Rose Glow',
-        category: 'Face Care',
+        category: 'Eyes Products',
         price: 'Rs 1999',
         originalPrice: 'Rs 2799',
         stock: 10,
@@ -116,7 +115,7 @@ export const products = [
     {
         id: 10,
         name: 'Cleaderm Lip Serum - Milky Blue',
-        category: 'Beauty Serum',
+        category: 'Lip Products',
         price: 'Rs 2999',
         originalPrice: 'Rs 4299',
         stock: 18,
@@ -130,7 +129,7 @@ export const products = [
     {
         id: 11,
         name: 'Cleaderm Lip Serum - Plum Pink',
-        category: 'Beauty Serum',
+        category: 'Lip Products',
         price: 'Rs 2999',
         originalPrice: 'Rs 4299',
         stock: 18,
@@ -143,7 +142,7 @@ export const products = [
     {
         id: 12,
         name: 'Peachmanu Glow Lip Serum',
-        category: 'Glow Serum',
+        category: 'Lip Products',
         price: 'Rs 2999',
         originalPrice: 'Rs 4299',
         stock: 22,
@@ -156,7 +155,7 @@ export const products = [
     {
         id: 29,
         name: 'Lip Tag Tint',
-        category: 'Face Care',
+        category: 'Lip Products',
         price: 'Rs 2999',
         originalPrice: 'Rs 4299',
         stock: 30,
@@ -169,7 +168,7 @@ export const products = [
     {
         id: 30,
         name: 'Lip Shades Palette',
-        category: 'Face Care',
+        category: 'Lip Products',
         price: 'Rs 2999',
         originalPrice: 'Rs 4299',
         stock: 15,
@@ -180,12 +179,11 @@ export const products = [
         img: lipShades
     },
 
-    // Face Products (Including additions from skincaree folder to reach 16+ products)
-    // Face Products (Items from imgs/face folder)
+    // Face Products
     {
         id: 6,
         name: 'Personal Cushion Blusher',
-        category: 'Face Care',
+        category: 'Face Products',
         price: 'Rs 1500',
         originalPrice: 'Rs 2000',
         stock: 50,
@@ -198,7 +196,7 @@ export const products = [
     {
         id: 7,
         name: 'Peachmanu Foundation',
-        category: 'Face Care',
+        category: 'Face Products',
         price: 'Rs 3499',
         originalPrice: 'Rs 4899',
         stock: 12,
@@ -212,7 +210,7 @@ export const products = [
     {
         id: 8,
         name: 'Peachmanu Glow Cream',
-        category: 'Whiting Cream',
+        category: 'Face Products',
         price: 'Rs 3499',
         originalPrice: 'Rs 4899',
         stock: 14,
@@ -225,7 +223,7 @@ export const products = [
     {
         id: 9,
         name: 'Advanced Wrinkle Cream',
-        category: 'Whiting Cream',
+        category: 'Face Products',
         price: 'Rs 2999',
         originalPrice: 'Rs 4299',
         stock: 15,
@@ -236,11 +234,11 @@ export const products = [
         img: faceWrinkleCream
     },
 
-    // Skincare Products (Items from imgs/skincaree folder)
+    // Skincare Products
     {
         id: 13,
         name: 'Grace Day Sheet Mask - Collagen',
-        category: 'Face Care',
+        category: 'Skincare',
         price: 'Rs 899',
         originalPrice: 'Rs 1270',
         stock: 40,
@@ -251,7 +249,7 @@ export const products = [
     {
         id: 14,
         name: 'Grace Day Sheet Mask - Aloe Vera',
-        category: 'Face Care',
+        category: 'Skincare',
         price: 'Rs 899',
         originalPrice: 'Rs 1270',
         stock: 35,
@@ -264,7 +262,7 @@ export const products = [
     {
         id: 15,
         name: 'Grace Day Sheet Mask - Tea Tree',
-        category: 'Acne Care',
+        category: 'Skincare',
         price: 'Rs 899',
         originalPrice: 'Rs 1270',
         stock: 30,
@@ -368,7 +366,7 @@ export const products = [
     {
         id: 23,
         name: 'Jas Perfect Foam - Collagen',
-        category: 'Facial Cleanser',
+        category: 'Skincare',
         price: 'Rs 1899',
         originalPrice: 'Rs 2700',
         stock: 15,
@@ -394,7 +392,7 @@ export const products = [
     {
         id: 25,
         name: 'Jas Perfect Foam - Acne Care',
-        category: 'Acne Care',
+        category: 'Skincare',
         price: 'Rs 1899',
         originalPrice: 'Rs 2700',
         stock: 12,
@@ -483,11 +481,11 @@ export const products = [
         img: skinVitaminC
     },
 
-    // Hensam Products
+    // Herbal Wellness
     {
         id: 34,
         name: 'Hansam Korean Herbal Hair Oil',
-        category: 'Face Care', // Mapping to Face Care as a general wellness category for now
+        category: 'Herbal Wellness',
         price: 'Rs 3699',
         originalPrice: 'Rs 3499',
         stock: 45,

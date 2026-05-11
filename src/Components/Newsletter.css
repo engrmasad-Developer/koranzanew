@@ -38,4 +38,7 @@
 
 @media (max-width: 600px) {
   .newsletter-form { flex-direction: column; }
+  .newsletter-title { font-size: 1.8rem; }
+  .newsletter-subtitle { font-size: 0.85rem; }
+  .newsletter-input { font-size: 0.9rem; }
 }

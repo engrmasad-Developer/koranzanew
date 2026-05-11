@@ -304,3 +304,39 @@
   cursor: pointer;
   padding: 0;
 }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .product-image-wrapper {
+    height: 190px;
+  }
+
+  .complement-variant .product-image-wrapper {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-image-wrapper {
+    height: 160px;
+  }
+
+  .product-name {
+    font-size: 0.9rem;
+  }
+
+  .product-price {
+    font-size: 0.9rem;
+  }
+
+  .tag {
+    font-size: 0.5rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .btn-add-to-cart,
+  .btn-add-cart-full {
+    padding: 0.7rem;
+    font-size: 0.7rem;
+  }
+}

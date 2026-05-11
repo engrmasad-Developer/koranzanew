@@ -13,8 +13,10 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  const { cartItems, wishlistItems } = useShop();
+  const { cartItems, wishlistItems, categories } = useShop();
+  const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
   const menuRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   const toggleSearch = () => setSearchOpen(!searchOpen);
 
@@ -80,6 +82,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      {/* Mobile backdrop */}
+      <div
+        className={`nav-backdrop ${mobileMenuOpen ? 'active' : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
       <div className="navbar-container">
         <Link to="/" className="nav-logo">
           Korenza
@@ -89,8 +96,27 @@ const Navbar = () => {
           <li className={isActive("/") ? "active" : ""}>
             <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
           </li>
-          <li className={isActive("/category") ? "active" : ""}>
+          <li 
+            className={`has-dropdown ${isActive("/category") ? "active" : ""}`}
+            onMouseEnter={() => setShopDropdownOpen(true)}
+            onMouseLeave={() => setShopDropdownOpen(false)}
+          >
             <Link to="/category/all" onClick={() => setMobileMenuOpen(false)}>Shop</Link>
+            {shopDropdownOpen && (
+              <ul className="dropdown-menu">
+                <li><Link to="/category/all" onClick={() => setShopDropdownOpen(false)}>All Products</Link></li>
+                {categories.map((cat, idx) => {
+                  const name = cat.name || cat.category;
+                  return (
+                    <li key={cat.id || idx}>
+                      <Link to={`/category/${name}`} onClick={() => setShopDropdownOpen(false)}>
+                        {name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </li>
           <li className={isActive("/contact") ? "active" : ""}>
             <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>contact us</Link>
@@ -116,7 +142,11 @@ const Navbar = () => {
             <User size={20} strokeWidth={1.5} />
           </Link>
 
-          <button className="mobile-toggle" onClick={toggleMobileMenu}>
+          <button
+            className={`mobile-toggle ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>

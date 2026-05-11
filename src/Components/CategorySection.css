@@ -171,9 +171,54 @@
     overflow-x: auto;
     justify-content: flex-start;
     padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .stories-container::-webkit-scrollbar { display: none; }
   
   .bento-card.large, .bento-card.small {
     height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-card.large {
+    height: 340px;
+  }
+  .bento-card.small {
+    height: 260px;
+  }
+  .card-overlay {
+    padding: 1.5rem;
+  }
+  .card-title {
+    font-size: 1.7rem;
+  }
+  .small .card-title {
+    font-size: 1.3rem;
+  }
+  .story-circle {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-card.large {
+    height: 300px;
+  }
+  .bento-card.small {
+    height: 220px;
+  }
+  .card-title {
+    font-size: 1.4rem;
+  }
+  .card-overlay {
+    padding: 1.2rem;
+  }
+  .arrow-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 }

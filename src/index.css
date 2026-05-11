@@ -152,7 +152,6 @@ a {
 }
 
 @media (max-width: 768px) {
-
   .grid-2,
   .grid-3,
   .grid-4 {
@@ -160,6 +159,28 @@ a {
   }
 
   .container {
-    padding: 0 1.5rem;
+    padding: 0 1.2rem;
+    margin: 40px auto;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+    margin: 30px auto;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .btn-primary {
+    padding: 0.8rem 2rem;
+    font-size: 0.75rem;
   }
 }

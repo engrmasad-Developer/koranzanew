@@ -42,5 +42,11 @@
 
 @media (max-width: 768px) {
   .section-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-  .section-title { font-size: 2.2rem; }
+  .section-title { font-size: 1.9rem; }
+  .trending-container { padding: 3rem 0; }
+}
+
+@media (max-width: 480px) {
+  .section-title { font-size: 1.6rem; }
+  .section-subtitle { font-size: 0.85rem; }
 }

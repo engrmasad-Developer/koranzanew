@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { useShop } from '../context/ShopContext';
@@ -12,7 +12,7 @@ const CategoryPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const searchQuery = searchParams.get('q');
 
-    const { products, productsLoading, parsePrice } = useShop();
+    const { products, productsLoading, parsePrice, categories } = useShop();
     const [categoryProducts, setCategoryProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -21,7 +21,7 @@ const CategoryPage = () => {
     const [sortBy, setSortBy] = useState('Recommended');
     const [selectedSkinTypes, setSelectedSkinTypes] = useState([]);
     const [selectedConcerns, setSelectedConcerns] = useState([]);
-    const [maxPrice, setMaxPrice] = useState(6000);
+    const [maxPrice, setMaxPrice] = useState(100000);
 
     const skinTypes = ['Normal', 'Oily', 'Dry', 'Sensitive', 'Combination'];
     const concerns = ['Anti-Aging', 'Hydration', 'Brightening', 'Acne'];
@@ -145,6 +145,30 @@ const CategoryPage = () => {
                 <div className="category-layout">
                     <aside className="category-sidebar">
                         <div className="sidebar-group">
+                            <h3 className="sidebar-title text-magenta">Categories</h3>
+                            <div className="category-links-list">
+                                <Link 
+                                    to="/category/all" 
+                                    className={`cat-sidebar-link ${categoryName === 'all' ? 'active' : ''}`}
+                                >
+                                    All Products
+                                </Link>
+                                {categories.map((cat, idx) => {
+                                    const name = cat.name || cat.category;
+                                    return (
+                                        <Link 
+                                            key={cat.id || idx}
+                                            to={`/category/${name}`} 
+                                            className={`cat-sidebar-link ${categoryName === name ? 'active' : ''}`}
+                                        >
+                                            {name}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="sidebar-group">
                             <h3 className="sidebar-title text-magenta">Skin Type</h3>
                             <div className="checkbox-list">
                                 {skinTypes.map(type => (
@@ -182,16 +206,16 @@ const CategoryPage = () => {
                                 <input 
                                     type="range" 
                                     min="200" 
-                                    max="6000" 
-                                    step="100"
+                                    max="100000" 
+                                    step="500"
                                     value={maxPrice} 
                                     onChange={(e) => setMaxPrice(Number(e.target.value))}
                                     className="styled-range" 
                                 />
                                 <div className="price-range-labels">
                                     <span>Rs 200</span>
-                                    <span className="current-range">{maxPrice}</span>
-                                    <span>Rs 6000+</span>
+                                    <span className="current-range">Rs {maxPrice}</span>
+                                    <span>Rs 100,000+</span>
                                 </div>
                             </div>
                         </div>
