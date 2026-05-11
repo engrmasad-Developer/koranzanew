@@ -53,7 +53,7 @@ export const categories = [
     { id: 2, name: 'Lip Products', img: lipCover },
     { id: 3, name: 'Face Products', img: faceCover },
     { id: 4, name: 'Skincare', img: skincareCover },
-    { id: 5, name: 'Herbal Wellness', img: Hansam },
+    { id: 5, name: 'Herbal Wellness', img: faceCover },
 ];
 
 export const products = [
@@ -63,26 +63,29 @@ export const products = [
         name: 'Radiance Dew Serum',
         category: 'Skincare',
         price: '999',
-        benefits: 'Hyaluronic & Rose Essence',
+        skinType: 'Normal, Dry, Sensitive',
+        benefits: 'Hydration, Brightening',
         isBestSeller: true,
-        img: 'https://images.pexels.com/photos/8128062/pexels-photo-8128062.jpeg'
+        img: 'https://images.pexels.com/photos/8128062/pexels-photo-8128062.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
         id: 2,
         name: 'Silk Recovery Cream',
         category: 'Skincare',
         price: '999',
-        benefits: 'Ceramides & Peptides',
+        skinType: 'Dry, Sensitive',
+        benefits: 'Anti-Aging, Hydration',
         isNew: true,
-        img: 'https://images.pexels.com/photos/8459356/pexels-photo-8459356.jpeg'
+        img: 'https://images.pexels.com/photos/8459356/pexels-photo-8459356.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
         id: 3,
         name: 'Cloud Cleanser',
         category: 'Skincare',
         price: '999',
-        benefits: 'Gentle Amino Acids',
-        img: 'https://images.pexels.com/photos/8140916/pexels-photo-8140916.jpeg'
+        skinType: 'Normal, Oily, Combination',
+        benefits: 'Hydration, Acne',
+        img: 'https://images.pexels.com/photos/8140916/pexels-photo-8140916.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
         id: 4,
@@ -91,7 +94,7 @@ export const products = [
         price: '999',
         benefits: 'Bakuchiol & Squalane',
         isEditorsPick: true,
-        img: 'https://images.pexels.com/photos/8128065/pexels-photo-8128065.jpeg'
+        img: 'https://images.pexels.com/photos/8128065/pexels-photo-8128065.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
         id: 5,
@@ -101,7 +104,8 @@ export const products = [
         originalPrice: 'Rs 2799',
         stock: 10,
         finish: 'Rose Metallic',
-        benefits: 'Soft glow, crease-resistant',
+        skinType: 'Normal, Combination',
+        benefits: 'Brightening',
         description: 'Add a touch of elegance with our Rose Glow shimmer. Highly pigmented and easy to apply, it creates a romantic, sparkling eye look in seconds.',
         howToUse: 'Apply directly to the eyelid and blend. Can be used alone or as a topper for matte eye shadows.',
         img: eyeShimmer2
@@ -116,7 +120,8 @@ export const products = [
         originalPrice: 'Rs 4299',
         stock: 18,
         finish: 'Glossy & Plump',
-        benefits: 'Collagen-infused, blurs lip wrinkles',
+        skinType: 'Dry, Sensitive',
+        benefits: 'Hydration, Anti-Aging',
         description: 'A viscous, collagen textured lip serum that forms a milky layer to blur and plump lip wrinkles, giving a dewy, moisturized look.',
         howToUse: 'Spread evenly across the lips.',
         img: lipSerumBlue
@@ -174,8 +179,7 @@ export const products = [
         img: lipShades
     },
 
-    // Face Products (Including additions from skincaree folder to reach 16+ products)
-    // Face Products (Items from imgs/face folder)
+    // Face Products
     {
         id: 6,
         name: 'Personal Cushion Blusher',
@@ -230,7 +234,7 @@ export const products = [
         img: faceWrinkleCream
     },
 
-    // Skincare Products (Items from imgs/skincaree folder)
+    // Skincare Products
     {
         id: 13,
         name: 'Grace Day Sheet Mask - Collagen',
@@ -366,6 +370,8 @@ export const products = [
         price: 'Rs 1899',
         originalPrice: 'Rs 2700',
         stock: 15,
+        skinType: 'Normal, Dry',
+        benefits: 'Hydration, Anti-Aging',
         description: 'Jas Perfect Foam is a gentle facial cleanser that creates a soft, foamy lather to remove dirt, oil, and makeup from your skin. It leaves your face clean, fresh, and smooth without feeling tight or dry.',
         howToUse: '1. Wet your face with water.\n2. Squeeze a small amount of the foam onto your palms.\n3. Gently massage the foam onto your face in circular motions.\n4. Rinse thoroughly with water.\n5. Pat dry with a towel.',
         img: skinFaceWash1
@@ -475,7 +481,7 @@ export const products = [
         img: skinVitaminC
     },
 
-    // Hensam Products
+    // Herbal Wellness
     {
         id: 34,
         name: 'Hansam Korean Herbal Hair Oil',

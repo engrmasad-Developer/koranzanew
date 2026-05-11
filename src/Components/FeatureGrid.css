@@ -99,3 +99,9 @@
   .feature-item { height: 400px; }
   .feature-column { height: auto; }
 }
+
+@media (max-width: 600px) {
+  .feature-item { height: 300px; }
+  .feature-content h3 { font-size: 1.4rem; }
+  .feature-content p { font-size: 0.8rem; }
+}

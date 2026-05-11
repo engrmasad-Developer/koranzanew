@@ -61,3 +61,10 @@
   .brand-heading { font-size: 2rem; }
   .brand-image-wrapper { height: 380px; }
 }
+
+@media (max-width: 600px) {
+  .brand-image-wrapper { height: 280px; }
+  .brand-heading { font-size: 1.7rem; }
+  .quote-box { position: static; width: 100%; margin-top: 1.5rem; }
+  .brand-text { font-size: 0.9rem; }
+}

@@ -1,4 +1,11 @@
 /* Newarrival.css - Specific mobile fixes for All Products section */
+.product-name-premium {
+    font-size: 0.5rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: #1A1A1A;
+}
+
 
 /* Mobile-specific fixes to prevent horizontal scrolling */
 @media (max-width: 600px) {

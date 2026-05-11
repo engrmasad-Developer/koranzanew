@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { useShop } from '../context/ShopContext';
@@ -12,76 +12,95 @@ const CategoryPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const searchQuery = searchParams.get('q');
 
+    const { products, productsLoading, parsePrice, categories } = useShop();
     const [categoryProducts, setCategoryProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Hardcoded products from the screenshot to match 100% fidelity
-    const shopProducts = [
-        {
-            id: 's1',
-            name: 'Luminous Petal Serum',
-            price: '600',
-            rating: 5,
-            reviews: 235,
-            isBestSeller: true,
-            img: 'https://images.pexels.com/photos/8128062/pexels-photo-8128062.jpeg'
-        },
-        {
-            id: 's2',
-            name: 'Velvet Cloud Crème',
-            price: '800',
-            rating: 5,
-            reviews: 58,
-            img: 'https://images.pexels.com/photos/8459356/pexels-photo-8459356.jpeg'
-        },
-        {
-            id: 's3',
-            name: 'Petal Infusion Cleanser',
-            price: '500',
-            rating: 5,
-            reviews: 432,
-            img: 'https://images.pexels.com/photos/8140916/pexels-photo-8140916.jpeg'
-        },
-        {
-            id: 's4',
-            name: 'Midnight Bloom Eye',
-            price: '600',
-            rating: 5,
-            reviews: 42,
-            isNew: true,
-            img: 'https://images.pexels.com/photos/8128065/pexels-photo-8128065.jpeg'
-        },
-        {
-            id: 's5',
-            name: 'Morning Glow SPF',
-            price: '800',
-            rating: 5,
-            reviews: 130,
-            img: 'https://images.pexels.com/photos/3321416/pexels-photo-3321416.jpeg'
-        },
-        {
-            id: 's6',
-            name: 'Morning Glow SPF',
-            price: '800',
-            rating: 5,
-            reviews: 250,
-            img: 'https://images.pexels.com/photos/3762466/pexels-photo-3762466.jpeg'
-        }
-    ];
+    // Filter states
+    const [filterBy, setFilterBy] = useState('all'); // 'all', 'best-seller', 'new-arrival'
+    const [sortBy, setSortBy] = useState('Recommended');
+    const [selectedSkinTypes, setSelectedSkinTypes] = useState([]);
+    const [selectedConcerns, setSelectedConcerns] = useState([]);
+    const [maxPrice, setMaxPrice] = useState(100000);
+
+    const skinTypes = ['Normal', 'Oily', 'Dry', 'Sensitive', 'Combination'];
+    const concerns = ['Anti-Aging', 'Hydration', 'Brightening', 'Acne'];
+
+    const handleSkinTypeChange = (type) => {
+        setSelectedSkinTypes(prev => 
+            prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+        );
+    };
+
+    const handleConcernChange = (concern) => {
+        setSelectedConcerns(prev => 
+            prev.includes(concern) ? prev.filter(c => c !== concern) : [...prev, concern]
+        );
+    };
 
     useEffect(() => {
         setLoading(true);
-        // Set data immediately
-        setCategoryProducts(shopProducts);
+        
+        let filtered = [...products];
+
+        // 1. Filter by category
+        if (categoryName && categoryName.toLowerCase() !== 'all') {
+            filtered = filtered.filter(p => 
+                p.category && p.category.toLowerCase() === categoryName.toLowerCase()
+            );
+        }
+
+        // 2. Filter by search query
+        if (searchQuery) {
+            filtered = filtered.filter(p => 
+                p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                (p.description && p.description.toLowerCase().includes(searchQuery.toLowerCase()))
+            );
+        }
+
+        // 3. Filter by Best Seller / New Arrival
+        if (filterBy === 'best-seller') {
+            filtered = filtered.filter(p => p.isBestSeller);
+        } else if (filterBy === 'new-arrival') {
+            filtered = filtered.filter(p => p.isNew);
+        }
+
+        // 4. Filter by Skin Type
+        if (selectedSkinTypes.length > 0) {
+            filtered = filtered.filter(p => 
+                p.skinType && selectedSkinTypes.some(type => p.skinType.includes(type))
+            );
+        }
+
+        // 5. Filter by Concern
+        if (selectedConcerns.length > 0) {
+            filtered = filtered.filter(p => 
+                p.benefits && selectedConcerns.some(concern => p.benefits.toLowerCase().includes(concern.toLowerCase()))
+            );
+        }
+
+        // 6. Filter by Price
+        filtered = filtered.filter(p => parsePrice(p.price) <= maxPrice);
+
+        // 7. Sort
+        if (sortBy === 'Price: Low to High') {
+            filtered.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+        } else if (sortBy === 'Price: High to Low') {
+            filtered.sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+        }
+
+        setCategoryProducts(filtered);
         setLoading(false);
         window.scrollTo(0, 0);
-    }, [categoryName, searchQuery]);
+    }, [categoryName, searchQuery, products, filterBy, sortBy, selectedSkinTypes, selectedConcerns, maxPrice, parsePrice]);
+
+    const displayTitle = categoryName === 'all' ? 'All Products' : categoryName;
 
     return (
         <div className="category-page">
             <div className="container">
                 <header className="category-header text-center">
-                    <h1 className="category-main-title serif text-magenta">Shop the Glow</h1>
+                    <h1 className="category-main-title serif text-magenta">{displayTitle}</h1>
                     <p className="category-subtitle">
                         Discover our collection of petal-soft essentials designed to illuminate your natural identity.
                     </p>
@@ -90,12 +109,32 @@ const CategoryPage = () => {
                 <div className="category-controls">
                     <div className="filter-pills">
                         <span className="control-label">FILTER BY:</span>
-                        <button className="pill-btn active">Best Sellers</button>
-                        <button className="pill-btn">New Arrivals</button>
+                        <button 
+                            className={`pill-btn ${filterBy === 'all' ? 'active' : ''}`}
+                            onClick={() => setFilterBy('all')}
+                        >
+                            All
+                        </button>
+                        <button 
+                            className={`pill-btn ${filterBy === 'best-seller' ? 'active' : ''}`}
+                            onClick={() => setFilterBy('best-seller')}
+                        >
+                            Best Sellers
+                        </button>
+                        <button 
+                            className={`pill-btn ${filterBy === 'new-arrival' ? 'active' : ''}`}
+                            onClick={() => setFilterBy('new-arrival')}
+                        >
+                            New Arrivals
+                        </button>
                     </div>
                     <div className="sort-control">
                         <span className="control-label">SORT:</span>
-                        <select className="minimal-select">
+                        <select 
+                            className="minimal-select" 
+                            value={sortBy}
+                            onChange={(e) => setSortBy(e.target.value)}
+                        >
                             <option>Recommended</option>
                             <option>Price: Low to High</option>
                             <option>Price: High to Low</option>
@@ -106,68 +145,104 @@ const CategoryPage = () => {
                 <div className="category-layout">
                     <aside className="category-sidebar">
                         <div className="sidebar-group">
+                            <h3 className="sidebar-title text-magenta">Categories</h3>
+                            <div className="category-links-list">
+                                <Link 
+                                    to="/category/all" 
+                                    className={`cat-sidebar-link ${categoryName === 'all' ? 'active' : ''}`}
+                                >
+                                    All Products
+                                </Link>
+                                {categories.map((cat, idx) => {
+                                    const name = cat.name || cat.category;
+                                    return (
+                                        <Link 
+                                            key={cat.id || idx}
+                                            to={`/category/${name}`} 
+                                            className={`cat-sidebar-link ${categoryName === name ? 'active' : ''}`}
+                                        >
+                                            {name}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="sidebar-group">
                             <h3 className="sidebar-title text-magenta">Skin Type</h3>
                             <div className="checkbox-list">
-                                <label className="custom-checkbox">
-                                    <input type="checkbox" /> <span className="checkmark"></span> Normal
-                                </label>
-                                <label className="custom-checkbox">
-                                    <input type="checkbox" /> <span className="checkmark"></span> Oily
-                                </label>
-                                <label className="custom-checkbox active">
-                                    <input type="checkbox" defaultChecked /> <span className="checkmark"></span> Dry
-                                </label>
-                                <label className="custom-checkbox">
-                                    <input type="checkbox" /> <span className="checkmark"></span> Sensitive
-                                </label>
-                                <label className="custom-checkbox">
-                                    <input type="checkbox" /> <span className="checkmark"></span> Combination
-                                </label>
+                                {skinTypes.map(type => (
+                                    <label key={type} className={`custom-checkbox ${selectedSkinTypes.includes(type) ? 'active' : ''}`}>
+                                        <input 
+                                            type="checkbox" 
+                                            checked={selectedSkinTypes.includes(type)}
+                                            onChange={() => handleSkinTypeChange(type)}
+                                        /> 
+                                        <span className="checkmark"></span> {type}
+                                    </label>
+                                ))}
                             </div>
                         </div>
 
                         <div className="sidebar-group">
                             <h3 className="sidebar-title text-magenta">Concern</h3>
                             <div className="checkbox-list">
-                                <label className="custom-checkbox">
-                                    <input type="checkbox" /> <span className="checkmark"></span> Anti-Aging
-                                </label>
-                                <label className="custom-checkbox">
-                                    <input type="checkbox" /> <span className="checkmark"></span> Hydration
-                                </label>
-                                <label className="custom-checkbox active">
-                                    <input type="checkbox" defaultChecked /> <span className="checkmark"></span> Brightening
-                                </label>
-                                <label className="custom-checkbox">
-                                    <input type="checkbox" /> <span className="checkmark"></span> Acne
-                                </label>
+                                {concerns.map(concern => (
+                                    <label key={concern} className={`custom-checkbox ${selectedConcerns.includes(concern) ? 'active' : ''}`}>
+                                        <input 
+                                            type="checkbox" 
+                                            checked={selectedConcerns.includes(concern)}
+                                            onChange={() => handleConcernChange(concern)}
+                                        /> 
+                                        <span className="checkmark"></span> {concern}
+                                    </label>
+                                ))}
                             </div>
                         </div>
 
                         <div className="sidebar-group">
                             <h3 className="sidebar-title text-magenta">Price Range</h3>
                             <div className="price-slider-wrapper">
-                                <input type="range" min="200" max="1600" defaultValue="1200" className="styled-range" />
+                                <input 
+                                    type="range" 
+                                    min="200" 
+                                    max="100000" 
+                                    step="500"
+                                    value={maxPrice} 
+                                    onChange={(e) => setMaxPrice(Number(e.target.value))}
+                                    className="styled-range" 
+                                />
                                 <div className="price-range-labels">
-                                    <span>Pkr 200</span>
-                                    <span className="current-range">1200</span>
-                                    <span>Pkr 1600+</span>
+                                    <span>Rs 200</span>
+                                    <span className="current-range">Rs {maxPrice}</span>
+                                    <span>Rs 100,000+</span>
                                 </div>
                             </div>
                         </div>
                     </aside>
 
                     <main className="category-products-area">
-                        {loading ? (
+                        {loading || productsLoading ? (
                             <div className="loading-state">Loading the glow...</div>
                         ) : categoryProducts.length === 0 ? (
-                            <p className="no-results">No products found. Try another filter!</p>
-                        ) : (
-                            <div className="shop-products-grid">
-                                {categoryProducts.map((product) => (
-                                    <ProductCard key={product.id} product={product} variant="shop" />
-                                ))}
+                            <div className="no-results-container">
+                                <p className="no-results">No products found matching your criteria in "{displayTitle}".</p>
+                                <button className="clear-filters-btn" onClick={() => {
+                                    setFilterBy('all');
+                                    setSelectedSkinTypes([]);
+                                    setSelectedConcerns([]);
+                                    setMaxPrice(6000);
+                                }}>Clear All Filters</button>
                             </div>
+                        ) : (
+                            <>
+                                <p className="results-count">{categoryProducts.length} products found</p>
+                                <div className="shop-products-grid">
+                                    {categoryProducts.map((product) => (
+                                        <ProductCard key={product.id} product={product} variant="shop" />
+                                    ))}
+                                </div>
+                            </>
                         )}
 
                         <div className="pagination">

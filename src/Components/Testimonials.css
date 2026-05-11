@@ -78,3 +78,25 @@
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
+@media (max-width: 768px) {
+  .testimonials-section .section-title {
+    font-size: 2rem;
+  }
+  .testimonials-section .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-section .section-title {
+    font-size: 1.6rem;
+  }
+  .testimonial-text {
+    font-size: 0.85rem;
+  }
+}
